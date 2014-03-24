@@ -3,7 +3,9 @@ class HTML < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet
 end
 set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true
-
+ENV['RACK_ENV'] = 'production'
+set :environment, 'production'
+set :port, 80
 not_found { haml 'This is nowhere to be found.' }
 error { 'Sorry there was a error.' }
 
@@ -80,7 +82,7 @@ __END__
     %h2.footer
       %i.footer
         powered by
-        %a(href='/') Cuihq's Blog
+        %a(href='https://github.com/cuihq/blog') Cuihq's Blog
     :css 
       .header a, .footer a { color: #b83000; }
       .container { margin: 0 auto; width: 80%; }
