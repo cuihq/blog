@@ -37,8 +37,8 @@ get '/rss' do
     xml.instruct! :xml, :version => '1.0'
     xml.rss :version => "2.0" do
       xml.channel do
-        xml.title "Bug's Blog RSS"
-        xml.description "Bug Blog Posts"
+        xml.title "Cuihq's Blog"
+        xml.description "Cuihq's Blog Feed"
         xml.link "http://www.cuihq.me/"
         articles.each do |title, time|
           xml.item do
