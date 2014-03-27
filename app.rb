@@ -37,8 +37,8 @@ get '/rss' do
     xml.instruct! :xml, :version => '1.0'
     xml.rss :version => "2.0" do
       xml.channel do
-        xml.title "Cuihq's Blog"
-        xml.description "Cuihq's Blog Feed"
+        xml.title "Bug's Blog RSS"
+        xml.description "Bug Blog Posts"
         xml.link "http://www.cuihq.me/"
         articles.each do |title, time|
           xml.item do
@@ -71,17 +71,6 @@ __END__
 %html
   %head
     %title Cuihq's Blog
-  %body
-    %h1.header
-      %a(href='/') Cuihq's Blog
-      %a#rss(href='/rss') RSS
-    %hr/
-    .container= yield
-    %hr/
-    %h2.footer
-      %i.footer
-        powered by
-        %a(href='https://github.com/cuihq/blog') Cuihq's Blog
     :css 
       .header a, .footer a { color: #b83000; }
       .container { margin: 0 auto; width: 80%; }
@@ -112,4 +101,24 @@ __END__
       .highlight .w { color: #BBBBBB; }
       .highlight .nf, .highlight .py, .highlight .na { color: #a8e1fe; }
       .highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi { color: #a8e1fe; font-weight: bold; }
-
+  %body
+    %h1.header
+      %a(href='/') Cuihq's Blog
+      %a#rss(href='/rss') RSS
+    %hr/
+    .container= yield
+    #disqus_thread
+      %noscript Please enable JavaScript to view the comments powered by Disqus. 
+      :javascript
+        var disqus_shortname = 'cuihqsblog';
+        (function() {
+          if (new RegExp('article').test(window.location.href)) {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          }
+        })();
+    %hr/
+    %h2.footer
+      %i powered by
+      %a(href='https://github.com/cuihq/blog') Cuihq's Blog
