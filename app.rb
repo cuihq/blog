@@ -1,15 +1,14 @@
 %w(sinatra haml builder sass redcarpet rouge rouge/plugins/redcarpet).each { |v| require v }
-Redcarpet::Render::HTML.send :include, ::Rouge::Plugins::Redcarpet
-set :markdown, layout_engine: :haml, fenced_code_blocks: true, disable_indented_code_blocks: true
-set :views, '.'
-set :environment, 'production'
-set :port, 80
+class HTML < Redcarpet::Render::HTML 
+  include Rouge::Plugins::Redcarpet 
+end
+set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true
 not_found { haml 'This is nowhere to be found.' }
 error { 'Sorry there was a error.' }
 
 get '/' do
   cache_control :public, :max_age => 72000
-  articles = Dir['*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).strftime('%Y-%m-%d')] }
+  articles = Dir['views/*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).strftime('%Y-%m-%d')] }
   haml :index, locals: { archives: articles } 
 end
 
@@ -24,7 +23,7 @@ end
 
 get '/sitemap.xml' do
   content_type 'application/xml'
-  articles = Dir['*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).strftime('%Y-%m-%d')] }
+  articles = Dir['views/*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).strftime('%Y-%m-%d')] }
   builder :layout => false do |xml|
     xml.instruct! :xml, :version => '1.0'
     xml.urlset :xmlns =>"http://www.sitemaps.org/schemas/sitemap/0.9" do
@@ -40,8 +39,9 @@ get '/sitemap.xml' do
 end
 
 get '/rss' do
+  cache_control :public, :max_age => 72000
   content_type 'application/xml'
-  articles = Dir['*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).rfc822()] }
+  articles = Dir['views/*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).rfc822()] }
   builder :layout => false do |xml|
     xml.instruct! :xml, :version => '1.0'
     xml.rss :version => "2.0" do
@@ -63,7 +63,7 @@ get '/rss' do
 end
 
 get '/article/:title' do |title|
-  if File.exist?("#{title}.md") then markdown title.to_sym else 404 end
+  if File.exist?("views/#{title}.md") then markdown title.to_sym else 404 end
 end
 
 __END__
@@ -106,9 +106,9 @@ __END__
 .container, #disqus_thread { margin: 0 auto; width: 80%; }
 #rss { background-color: #b83000; color: white; padding: 3px; text-decoration: blink; font-size: small; }
 .footer { color: #888; float: right; }
-pre { 
+pre {  color: #faf6e4; background-color: #122b3b; }
+.highlight { 
   font-family: 'Ubuntu Mono', 'Monaco', monospace;
-  color: #faf6e4; background-color: #122b3b;
   table td { padding: 5px; }
   table pre { margin: 0; }
   .gl, .gt { color: #dee5e7; background-color: #4e5d62; }
