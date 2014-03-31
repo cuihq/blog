@@ -1,14 +1,12 @@
 %w(sinatra haml builder sass redcarpet rouge rouge/plugins/redcarpet).each { |v| require v }
-class HTML < Redcarpet::Render::HTML
-  include Rouge::Plugins::Redcarpet
-end
-set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true
+Redcarpet::Render::HTML.send :include, ::Rouge::Plugins::Redcarpet
+set :markdown, layout_engine: :haml, fenced_code_blocks: true, disable_indented_code_blocks: true
 set :views, '.'
 set :environment, 'production'
 set :port, 80
 not_found { haml 'This is nowhere to be found.' }
 error { 'Sorry there was a error.' }
-$last_modified = Time.now
+
 get '/' do
   cache_control :public, :max_age => 72000
   articles = Dir['*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).strftime('%Y-%m-%d')] }
@@ -108,8 +106,8 @@ __END__
 .container, #disqus_thread { margin: 0 auto; width: 80%; }
 #rss { background-color: #b83000; color: white; padding: 3px; text-decoration: blink; font-size: small; }
 .footer { color: #888; float: right; }
-pre { font-family: 'Ubuntu Mono', 'Monaco', monospace; }
-.highlight { 
+pre { 
+  font-family: 'Ubuntu Mono', 'Monaco', monospace;
   color: #faf6e4; background-color: #122b3b;
   table td { padding: 5px; }
   table pre { margin: 0; }
