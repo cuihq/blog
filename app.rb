@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 %w(sinatra haml builder sass redcarpet rouge rouge/plugins/redcarpet).each { |v| require v }
 class HTML < Redcarpet::Render::HTML 
   include Rouge::Plugins::Redcarpet 

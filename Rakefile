@@ -28,8 +28,12 @@ task :deploy do
   password = STDIN.noecho(&:gets).chomp
   puts "\n===deploy begin==="
   Net::SSH.start(host, user, :password => password) do |ssh|
-    puts '\n===update code from github==='
+    puts "\nstop server:"
+    puts ssh.exec!('killall ruby')
+    puts "\nupdate code from github:"
     puts ssh.exec!("[ -d #{path} ] && cd #{path} && git pull || git clone http://github.com/cuihq/blog")
+    puts "\nstart server:"
+    puts ssh.exec!("cd #{path} && app.rb -e production -p 80 -o 0.0.0.0 -s thin > blog.log")
   end
   puts "\n===deploy finished==="
 end
