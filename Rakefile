@@ -1,12 +1,12 @@
 $:.unshift File.dirname(__FILE__)
-require 'net/ssh'
 require 'io/console'
+require 'net/ssh'
 host = 'cuihq.me'
-path = './blog'
+path = 'blog'
 
 task :default => :new
 
-desc 'Create a new article.'
+desc 'create a new article.'
 task :new do
   print 'Title: '
   title = STDIN.gets.chomp.gsub(/\s+/, '_')
@@ -26,10 +26,10 @@ task :deploy do
   user = 'root' if user.empty?
   print 'Password:'
   password = STDIN.noecho(&:gets).chomp
-  puts "\n deploy beginning...\n\n"
+  puts "\n===deploy begin==="
   Net::SSH.start(host, user, :password => password) do |ssh|
-    ssh.exec!("cd #{path}")
-    puts ssh.exec!("pwd")
+    puts '\n===update code from github==='
+    puts ssh.exec!("[ -d #{path} ] && cd #{path} && git pull || git clone http://github.com/cuihq/blog")
   end
-  puts "\n deploy finished. \n\n"
+  puts "\n===deploy finished==="
 end

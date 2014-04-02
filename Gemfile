@@ -8,4 +8,4 @@ gem 'redcarpet'
 gem 'rouge'
 
 gem 'net-ssh'
-gem 'nte-scp'
+

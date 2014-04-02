@@ -99,7 +99,7 @@ __END__
     %hr/
     %h2.footer
       %i powered by
-      %a(href='https://github.com/cuihq/blog') cuihq's blog
+      %a(href='https://github.com/cuihq/blog') cuihq
 
 @@ stylesheet
 .header a, .footer a { color: #b83000; }
