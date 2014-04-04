@@ -100,7 +100,7 @@ __END__
       %a(href='/') cuihq's blog
       %a#rss(href='/rss') RSS
     %hr/
-    .container= yield
+    .container~ yield
     #disqus_thread
       %noscript Please enable JavaScript to view the comments. 
       :javascript
