@@ -81,6 +81,7 @@ __END__
 %html
   %head
     %title cuihq's blog
+    %meta(charset='utf-8')
     %link(rel='stylesheet' href='/blog.css' type='text/css')
   %body
     %h1.header

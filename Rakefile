@@ -1,4 +1,3 @@
-$:.unshift File.dirname(__FILE__)
 require 'io/console'
 require 'net/ssh'
 host = 'cuihq.me'
@@ -33,7 +32,7 @@ task :deploy do
     puts "\nupdate code from github:"
     puts ssh.exec!("[ -d #{path} ] && cd #{path} && git pull || git clone http://github.com/cuihq/blog")
     puts "\nstart server:"
-    puts ssh.exec!("cd #{path} && app.rb -e production -p 80 -o 0.0.0.0 -s thin > blog.log")
+    puts ssh.exec!("cd #{path} && ruby app.rb -e production -p 80 -o 0.0.0.0 -s thin > blog.log")
   end
   puts "\n===deploy finished==="
 end
