@@ -1,12 +1,17 @@
 #!/usr/bin/env ruby
-%w(sinatra haml builder sass redcarpet rouge rouge/plugins/redcarpet).each { |v| require v }
+%w(sinatra haml builder sass redcarpet rouge rouge/plugins/redcarpet logger).each { |v| require v }
 class HTML < Redcarpet::Render::HTML 
   include Rouge::Plugins::Redcarpet 
 end
+set :environment, 'production'
 set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true, tables: true, superscript: true
 not_found { haml 'This is nowhere to be found.' }
-error { 'Sorry there was a error.' }
-
+set :logging, nil
+err_logger = Logger.new('blog.log', 'monthly')
+error do
+  err_logger.error env['sinatra.error']
+  'Sorry there was a error.'
+end
 get '/' do
   cache_control :public, :max_age => 72000
   articles = Dir['views/*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).strftime('%Y-%m-%d')] }
