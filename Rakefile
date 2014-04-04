@@ -32,7 +32,7 @@ task :deploy do
     puts "\nupdate code from github:"
     puts ssh.exec!("[ -d #{path} ] && cd #{path} && git pull || git clone http://github.com/cuihq/blog")
     puts "\nstart server:"
-    puts ssh.exec!("cd #{path} && ruby app.rb -e production -p 80 -o 0.0.0.0 -s thin > blog.log")
+    puts ssh.exec!("cd #{path} && ruby app.rb")
   end
   puts "\n===deploy finished==="
 end
