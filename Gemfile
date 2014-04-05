@@ -9,4 +9,5 @@ gem 'rouge'
 gem 'thin'
 
 gem 'net-ssh'
+gem 'god'
 

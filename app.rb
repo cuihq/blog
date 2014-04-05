@@ -3,11 +3,10 @@
 class HTML < Redcarpet::Render::HTML 
   include Rouge::Plugins::Redcarpet 
 end
-set :environment, 'production'
-set :port, 80
+set environment: 'production', port: 80, logging: nil
 set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true, tables: true, superscript: true
 not_found { haml 'This is nowhere to be found.' }
-err_logger = Logger.new('blog.log', 'monthly')
+err_logger = Logger.new('log/blog.log', 'monthly')
 error do
   err_logger.error env['sinatra.error']
   'Sorry there was a error.'

@@ -28,11 +28,11 @@ task :deploy do
   puts "\n===deploy begin==="
   Net::SSH.start(host, user, :password => password) do |ssh|
     puts "\nstop server:"
-    puts ssh.exec!('killall ruby')
+    puts ssh.exec!('god stop')
     puts "\nupdate code from github:"
     puts ssh.exec!("[ -d #{path} ] && cd #{path} && git pull || git clone http://github.com/cuihq/blog")
     puts "\nstart server:"
-    puts ssh.exec!("cd #{path} && nohup app.rb")
+    puts ssh.exec!('god start')
   end
   puts "\n===deploy finished==="
 end
