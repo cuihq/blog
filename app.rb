@@ -3,17 +3,21 @@
 class HTML < Redcarpet::Render::HTML 
   include Rouge::Plugins::Redcarpet 
 end
-set environment: 'production', port: 80, logging: nil
 set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true, tables: true, superscript: true
+set environment: 'production', port: 80, logging: nil
+
 not_found { haml "<iframe scrolling='no' frameborder='0' src='http://yibo.iyiyun.com/js/yibo404/key/1' width='640' height='462' style='display:block;'></iframe>" }
 err_logger = Logger.new('log/blog.log', 'monthly')
 error do
   err_logger.error env['sinatra.error']
   'Sorry there was a error.'
 end
+
+articles = Dir['views/*.md'].sort_by { |file| File.mtime(file) }.reverse_each.map { |r| [File.basename(r, '.md'), File.mtime(r).strftime('%Y-%m-%d')] }
+feeds = Dir['views/*.md'].sort_by { |file| File.mtime(file) }.reverse_each.map { |r| [File.basename(r, '.md'), File.mtime(r).rfc822()] }
+
 get '/' do
   cache_control :public, :max_age => 72000
-  articles = Dir['views/*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).strftime('%Y-%m-%d')] }
   haml :index, locals: { archives: articles } 
 end
 
@@ -28,7 +32,6 @@ end
 
 get '/sitemap.xml' do
   content_type 'application/xml'
-  articles = Dir['views/*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).strftime('%Y-%m-%d')] }
   builder :layout => false do |xml|
     xml.instruct! :xml, :version => '1.0'
     xml.urlset :xmlns =>"http://www.sitemaps.org/schemas/sitemap/0.9" do
@@ -46,7 +49,6 @@ end
 get '/rss' do
   cache_control :public, :max_age => 72000
   content_type 'application/xml'
-  articles = Dir['views/*.md'].map { |r| [File.basename(r, '.md'), File.mtime(r).rfc822()] }
   builder :layout => false do |xml|
     xml.instruct! :xml, :version => '1.0'
     xml.rss :version => "2.0" do
@@ -54,7 +56,7 @@ get '/rss' do
         xml.title "cuihq's blog"
         xml.description "cuihq's blog"
         xml.link "http://www.cuihq.me/"
-        articles.each do |title, time|
+        feeds.each do |title, time|
           xml.item do
             xml.title title.tr('_', ' ')
             xml.link "http://www.cuihq.me/article/#{title}"
