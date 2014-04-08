@@ -5,7 +5,7 @@ class HTML < Redcarpet::Render::HTML
 end
 set environment: 'production', port: 80, logging: nil
 set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true, tables: true, superscript: true
-not_found { haml 'This is nowhere to be found.' }
+not_found { haml "<iframe scrolling='no' frameborder='0' src='http://yibo.iyiyun.com/js/yibo404/key/1' width='640' height='462' style='display:block;'></iframe>" }
 err_logger = Logger.new('log/blog.log', 'monthly')
 error do
   err_logger.error env['sinatra.error']
@@ -143,14 +143,14 @@ a:hover { text-decoration: underline; }
 ul, ol { padding-left: 30px; }
 ul li > :first-child, ol li > :first-child, ul li ul:first-of-type, ol li ol:first-of-type, ul li ol:first-of-type, ol li ul:first-of-type { margin-top: 0px; }
 ul ul, ul ol, ol ol, ol ul { margin-bottom: 0; }
-dl { padding: 0; }
-dl dt { font-size: 14px; font-weight: bold; font-style: italic; padding: 0; margin: 15px 0 5px; }
-dl dt:first-child { padding: 0; }
-dl dt>:first-child { margin-top: 0px; }
-dl dt>:last-child { margin-bottom: 0px; }
-dl dd { margin: 0 0 15px; padding: 0 15px; }
-dl dd>:first-child { margin-top: 0px; }
-dl dd>:last-child { margin-bottom: 0px; }
+dl {
+  padding: 0;
+  dt { font-size: 14px; font-weight: bold; font-style: italic; padding: 0; margin: 15px 0 5px; }
+  dt:first-child { padding: 0; }
+  dt>:first-child, dd>:first-child { margin-top: 0px; }
+  dt>:last-child, dd>:last-child { margin-bottom: 0px; }
+  dd { margin: 0 0 15px; padding: 0 15px; }
+}
 blockquote { border-left: 4px solid #DDD; padding: 0 15px; color: #777; }
 blockquote>:first-child { margin-top: 0px; }
 blockquote>:last-child { margin-bottom: 0px; }
