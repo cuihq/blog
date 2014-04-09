@@ -6,7 +6,7 @@ end
 set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true, tables: true, superscript: true
 set environment: 'production', port: 80, logging: nil
 
-not_found { haml "<iframe scrolling='no' frameborder='0' src='http://yibo.iyiyun.com/js/yibo404/key/1' width='640' height='462' style='display:block;'></iframe>" }
+not_found { "<iframe scrolling='no' frameborder='0' src='http://yibo.iyiyun.com/js/yibo404/key/1' width='640' height='462' style='display:block;'></iframe>" }
 err_logger = Logger.new('log/blog.log', 'monthly')
 error do
   err_logger.error env['sinatra.error']
