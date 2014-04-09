@@ -88,6 +88,7 @@ __END__
   %head
     %title cuihq's blog
     %meta(charset='utf-8')
+    %meta(name='viewport' content='width=device-width, initial-scale=1.0')
     %link(rel='stylesheet' href='/blog.css' type='text/css')
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
