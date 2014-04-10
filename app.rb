@@ -70,6 +70,7 @@ get '/rss' do
 end
 
 get '/article/:title' do |title|
+  cache_control :public, :max_age => 2592000
   if File.exist?("views/#{title}.md") then markdown title.to_sym else 404 end
 end
 
