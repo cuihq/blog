@@ -4,8 +4,7 @@ class HTML < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet 
 end
 set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true, tables: true, superscript: true
-set environment: 'production', port: 80, logging: nil
-
+set environment: 'production', port: 80, logging: nil, static_cache_control: [:public, :max_age => 300]
 not_found { "<iframe scrolling='no' frameborder='0' src='http://yibo.iyiyun.com/js/yibo404/key/1' width='640' height='462' style='display:block;'></iframe>" }
 err_logger = Logger.new('log/blog.log', 'monthly')
 error do
