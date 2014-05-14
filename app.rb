@@ -57,9 +57,9 @@ get '/rss' do
         xml.link "http://www.cuihq.me/"
         feeds.each do |title, time|
           xml.item do
-            xml.title title.tr('_', ' ')
+            xml.title title.tr('-', ' ')
             xml.link "http://www.cuihq.me/article/#{title}"
-            xml.description title.tr('_', ' ')
+            xml.description title.tr('-', ' ')
             xml.pubDate time
           end
         end
@@ -80,7 +80,7 @@ __END__
   - for article, time in archives
     %li
       #{time}
-      %a(href="/article/#{article}") #{article.tr('_', ' ')}
+      %a(href="/article/#{article}") #{article.tr('-', ' ')}
 
 @@ layout
 !!! 5
