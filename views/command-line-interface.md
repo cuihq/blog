@@ -5,7 +5,8 @@
 一部分终端会自动给形如http://cuihq.me的文本。
 
 效果:
-![字符链接](cli_text_a.jpg "字符链接")
+
+![字符链接](/cli_text_a.jpg "字符链接")
 
 ## 字符画
 英文字符和标点可使用字符画。
@@ -15,6 +16,7 @@
 ```shell
 artii "chq's blog" -f big
 ```
+
 ruby代码
 ```ruby
 require 'artii'
@@ -22,10 +24,11 @@ puts Artii::CLI.new('chq"s blog','-f','big').output
 ```
 
 效果:
-![字符画效果](cli_text_image.jpg "字符画效果")
+
+![字符画效果](/cli_text_image.jpg "字符画效果")
 
 参考:
-* [artii](https://github.com/miketierney/artii "artii")
+[artii](https://github.com/miketierney/artii "artii")
 
 ## 文本样式
 可对文本的颜色、背景进行控制，在不支持文本样式的终端中，会将转义字符一起显示出来。
@@ -67,6 +70,7 @@ puts "\033[0;4;43mchq\033[0m's blog"
   47 | 黑色背景
 
 参考:
+
 * [ANSI转义码](http://en.wikipedia.org/wiki/ANSI_escape_code "ANSI转义码")
 * [colorize](https://github.com/fazibear/colorize, "colorize")
 
