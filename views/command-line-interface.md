@@ -13,11 +13,13 @@
 
 例子:
 命令行输出
+
 ```shell
 artii "chq's blog" -f big
 ```
 
 ruby代码
+
 ```ruby
 require 'artii'
 puts Artii::CLI.new('chq"s blog','-f','big').output
@@ -36,6 +38,7 @@ puts Artii::CLI.new('chq"s blog','-f','big').output
 例子:
 
 显示一个黄色背景先划线的chq文字。
+
 ```ruby
 puts "\033[0;4;43mchq\033[0m's blog"
 ```
