@@ -11,14 +11,14 @@
 ## 字符画
 英文字符和标点可使用字符画。
 
-例子:
-命令行输出
+例子
+命令行输出：
 
 ```shell
 artii "chq's blog" -f big
 ```
 
-ruby代码
+ruby代码：
 
 ```ruby
 require 'artii'
