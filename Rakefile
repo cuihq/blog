@@ -1,7 +1,10 @@
 require 'io/console'
 require 'net/ssh'
+require 'rake/clean'
 host = 'cuihq.me'
 path = 'blog'
+
+CLEAN.include('log/*.log', 'views/*.md')
 
 task :default => :new
 
