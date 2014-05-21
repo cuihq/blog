@@ -4,7 +4,8 @@ require 'rake/clean'
 host = 'cuihq.me'
 path = 'blog'
 
-CLEAN.include('log/*.log', 'views/*.md')
+CLEAN.include('log/*.log')
+CLOBBER.include('views/*.md')
 
 task :default => :new
 
