@@ -49,14 +49,16 @@ get '/rss' do
   cache_control :public, :max_age => 72000
   content_type 'application/xml'
   builder :layout => false do |xml|
-    xml.instruct! :xml, :version => '1.0', :xmlns:atom => "http://www.w3.org/2005/Atom"
-    xml.rss :version => "2.0" do
-      xml.channel :rel => "self" do
+    xml.instruct! :xml, :version => '1.0'
+    xml.rss :version => "2.0", :'xmlns:atom' => "http://www.w3.org/2005/Atom" do
+      xml.channel do
+        xml.__send__ :"atom:link", :href => 'http://cuihq.me/rss', :rel => 'self', :type => 'application/rss+xml'
         xml.title "cuihq's blog"
         xml.description "cuihq's blog"
         xml.link "http://www.cuihq.me/"
         feeds.each do |title, time|
           xml.item do
+            xml.guid "http://www.cuihq.me/article/#{title}"
             xml.title title.tr('-', ' ')
             xml.link "http://www.cuihq.me/article/#{title}"
             xml.description title.tr('-', ' ')
