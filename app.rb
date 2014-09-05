@@ -103,7 +103,7 @@ __END__
   %body
     %h1.header
       %a(href='/') cuihq's blog
-      %a#rss(href='/rss') RSS
+      %span.addthis_horizontal_follow_toolbox
     %hr/
     .container~ yield
     #disqus_thread
@@ -122,7 +122,6 @@ __END__
 
 @@ stylesheet
 .header a, .footer a { color: #b83000; }
-#rss { background-color: #b83000; color: white; padding: 3px; text-decoration: blink; font-size: small; }
 .footer { color: #888; float: right; }
 pre {  color: #faf6e4; background-color: #122b3b; }
 * { margin: 0; padding: 0; border: 0; font: inherit; vertical-align: baseline; }
