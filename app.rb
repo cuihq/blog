@@ -5,7 +5,7 @@ class HTML < Redcarpet::Render::HTML
 end
 set :markdown, layout_engine: :haml, renderer: HTML, fenced_code_blocks: true, disable_indented_code_blocks: true, tables: true, superscript: true
 set environment: 'production', port: 80, logging: nil, static_cache_control: [:public, :max_age => 300]
-not_found { "<iframe scrolling='no' frameborder='0' src='http://yibo.iyiyun.com/Home/Distribute/ad404/key/5956' width='654' height='470' style='display:block;'></iframe>" }
+not_found { haml :not_found, locals: { comment_enable: false }  }
 err_logger = Logger.new('log/blog.log', 'monthly')
 error do
   err_logger.error env['sinatra.error']
@@ -17,7 +17,7 @@ feeds = Dir['views/*.md'].sort_by { |file| File.mtime(file) }.reverse_each.map {
 
 get '/' do
   cache_control :public, :max_age => 72000
-  haml :index, locals: { archives: articles } 
+  haml :index, locals: { archives: articles, comment_enable: false }
 end
 
 get '/robots.txt' do
@@ -72,10 +72,13 @@ end
 
 get '/article/:title' do |title|
   cache_control :public, :max_age => 2592000
-  if File.exist?("views/#{title}.md") then markdown title.to_sym else 404 end
+  if File.exist?("views/#{title}.md") then markdown title.to_sym, locals: { comment_enable: true } else 404 end
 end
 
 __END__
+
+@@ not_found
+%iframe(scrolling='no' frameborder='0' src='http://yibo.iyiyun.com/Home/Distribute/ad404/key/5956' width='654' height='470' style='display:block;')
 
 @@ index
 %ul
@@ -101,20 +104,20 @@ __END__
       ga('create', 'UA-49697362-1', 'cuihq.me');
       ga('send', 'pageview');
   %body
+    %noscript 
+      %h1 Please enable JavaScript to view the site.
     %h1.header
       %a(href='/') cuihq's blog
       %span.addthis_horizontal_follow_toolbox
     %hr/
     .container~ yield
-    #disqus_thread
-      %noscript Please enable JavaScript to view the comments. 
-      :javascript
-        var disqus_shortname = 'cuihqsblog';
-        if (new RegExp('article').test(window.location.href)) {
+    - if comment_enable
+      #disqus_thread
+        :javascript
+          var disqus_shortname = 'cuihqsblog';
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//cuihqsblog.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        }
     %hr/
     %h2.footer
       %i powered by
