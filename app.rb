@@ -92,6 +92,7 @@ __END__
     %meta(charset='utf-8')
     %meta(name='viewport' content='width=device-width, initial-scale=1.0')
     %link(rel='stylesheet' href='/blog.css' type='text/css')
+    %script(type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54094e8d604eba9f")
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
