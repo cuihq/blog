@@ -120,6 +120,8 @@ __END__
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     %hr/
     %h2.footer
+      %a(rel="license" href="http://creativecommons.org/licenses/by/4.0/")
+        %img(alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png")
       %i powered by
       %a(href='https://github.com/cuihq/blog') cuihq
 
