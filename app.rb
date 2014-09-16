@@ -95,6 +95,7 @@ __END__
     %meta(charset='utf-8')
     %meta(name='viewport' content='width=device-width, initial-scale=1.0')
     %link(rel='stylesheet' href='/blog.css' type='text/css')
+    %script(type="text/javascript" src="/slide-js.js")
     %script(type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54094e8d604eba9f")
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -107,11 +108,29 @@ __END__
     %noscript 
       %h1 Please enable JavaScript to view the site.
     %h1.header
+      #ppt PPT
       %a(href='/') cuihq's blog
       %span.addthis_horizontal_follow_toolbox
     %hr/
-    .container~ yield
+    #content.container~ yield
     - if comment_enable
+      :javascript
+        slide = new Slide({
+          id: 'content',
+          cycle: false,
+          "break": 'hr',
+          height: 630
+        });
+        ppt = document.getElementById('ppt');
+        ppt.onclick = function() {
+          if (slide.is_enable()) {
+            slide.stop();
+            return ppt.innerText = 'PPT';
+          } else {
+            slide.start();
+            return ppt.innerText = 'Norm';
+          }
+        };
       #disqus_thread
         :javascript
           var disqus_shortname = 'cuihqsblog';
@@ -218,4 +237,140 @@ kbd {
   .sr { color: #009926 }
   .ss { color: #990073 }
   .gc { color: #999; background-color: #EAF2F5 }
+}
+$front-color: #b83000;
+$backround-color: #ffffff;
+$button-active-color: #3c8dde;
+.sj {
+  .sj-show {
+    width: auto;
+    overflow: hidden;
+    background-color: $backround-color;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: $front-color;
+    padding-bottom: 60px;
+    .sj-page {
+      margin: 40px;
+    }
+  }
+  .sj-control {
+    width: auto;
+    height: 30px;
+    background-color: $backround-color;
+    border-width: 0px 1px 0 1px;
+    border-style: solid;
+    border-color: $front-color;
+    .sj-previous-page-button, .sj-previous-fragment-button, .sj-next-fragmet-button, .sj-next-page-button {
+      display: block;
+      cursor: pointer;
+      width: 0;
+      height: 0;
+      position: relative;
+    }
+    .sj-previous-fragment-button {
+      bottom: 60px;
+      border-right: 30px solid $front-color;
+      &:hover, &:focus, &:active {
+        border-right: 30px solid $button-active-color;
+      }
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+    }
+    .sj-previous-page-button {
+      bottom: 60px;
+      left: 30px;
+      border-bottom: 30px solid $front-color;
+      &:hover, &:focus, &:active {
+        border-bottom: 30px solid $button-active-color;
+      } 
+      border-left: 15px solid transparent; 
+      border-right: 15px solid transparent;  
+    }
+    .sj-next-page-button {
+      bottom: 90px;
+      left: 30px;
+      border-top: 30px solid $front-color;
+      &:hover, &:focus, &:active {
+        border-top: 30px solid $button-active-color;
+      }
+      border-left: 15px solid transparent; 
+      border-right: 15px solid transparent;
+    }
+    .sj-next-fragmet-button {
+      bottom: 90px;
+      left: 60px;
+      border-left: 30px solid $front-color;
+      &:hover, &:focus, &:active {
+        border-left: 30px solid $button-active-color;
+      }
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+    }
+    .sj-full-screen-button {
+      display: block;
+      cursor: pointer;
+      position: relative;
+      bottom: 150px;
+      left: 30px;
+      background-color: $front-color;
+      &:hover, &:focus, &:active {
+        background-color: $button-active-color;
+      }
+      width: 30px; 
+      height: 30px;
+    }
+    .sj-page-info {
+      color: $backround-color;
+      background-color: $front-color;
+      float: right;
+      padding: 0px 10px 0px 10px;
+    }
+  }
+  .sj-progress-bar {
+    height: auto;
+    padding: 0;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: $front-color;
+    background-color: $backround-color;
+    .sj-progress-inner {
+      height: 10px;
+      min-width: 10px;
+      background: $front-color;
+    }
+  }
+}
+.sj-button-disable {
+  opacity: 0.3;
+}
+.sj-full-screen {
+  width: 100%;
+  height: 100%;
+  .sj-show {
+    padding: 40px;
+    width: 100%;
+    height: 100% !important;
+  }
+  .sj-control {
+    .sj-page-info {
+      position: absolute;
+      top: 20px;
+      right: 0px;
+    }
+  }
+  .sj-progress-bar {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+}
+#ppt {
+  background-color: #b83000;
+  color: #ffffff;
+  margin: 10px;
+  width: 80px;
+  text-align: center;
+  float: right;
+  font-size: 14px;
 }
