@@ -7,16 +7,20 @@ ImageMagic 是一个开源的创建、编辑、合成或转换位图的软件集
 * 位图: 超过100种图片格式。
 
 参考资料：
-[ImageMagic官网](http://www.imagemagick.org/)
-[getting started with imagemagick](http://www.slideshare.net/bbbart/getting-started-with-imagemagick)
+
+* [ImageMagic官网](http://www.imagemagick.org/)
+* [getting started with imagemagick](http://www.slideshare.net/bbbart/getting-started-with-imagemagick)
 
 ---------------------------------------------------------------------
 
 # 语言及平台
 
-Ruby程序语言支持: [MiniMagick](http://rubyforge.org/projects/mini-magick)
+Ruby程序语言支持: 
+
+[MiniMagick](http://rubyforge.org/projects/mini-magick)
 
 平台支持: 
+
   * Unix
   * Mac OS X
   * iOS
