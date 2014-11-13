@@ -371,7 +371,15 @@ convert test.jpg -blur 0x3 test_blue.jpg
 
 ---------------------------------------------------------------------------
 
-# 降噪
+# 噪声
+
+## 增加噪音
+
+```shell
+convert test.jpg +noise 5 test_noise.jpg
+```
+
+## 降噪
 
 ```shell
 convert test.jpg -noise 5 test_noise.jpg
