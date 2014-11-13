@@ -198,7 +198,7 @@ convert test.jpg -wave 50x250 test_wave.jpg
 沿着X方向或者Y方向的角度
 
 ```shell
-convert test.jpg -shear 20 test_share.jpg
+convert test.jpg -shear 20 test_shear.jpg
 ```
 
 ![倾斜效果](/test_shear.jpg "倾斜效果")
