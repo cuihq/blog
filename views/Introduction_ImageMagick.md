@@ -203,7 +203,7 @@ convert *.png +append arrow.jpg
 
 要拼接的图片
 
-![包1](/bag_frame1 "包1")
+![包1](/bag_frame1.gif "包1")
 ![包2](/bag_frame2.gif "包2")
 
 
@@ -215,7 +215,7 @@ compare bag_frame1.gif bag_frame2.gif compare.gif
 
 比较效果
 
-> ![静态比较](/compare.jpg "静态比较")
+> ![静态比较](/compare.gif "静态比较")
 
 例2，动态比较:
 
