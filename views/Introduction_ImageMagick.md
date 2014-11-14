@@ -98,7 +98,7 @@ convert -scale 50x50 avatar.png avatar_small.png
 ```
 
 ![头像](/avatar.png "头像")
-![小头像](/avatar.png "小头像")
+![小头像](/avatar_small.png "小头像")
 
 例2：
 
@@ -210,14 +210,16 @@ convert *.png +append arrow.jpg
 
 # 合成图片
 
-![头像](/avatar.png "头像")
-![二维码](/qr_image.png "二维码")
-
 ```shell
 composite -gravity center avatar_small.png qr_image.png qr_avatar.png
 ```
 
-拼接效果
+要合成的图片
+
+![头像](/avatar.png "头像")
+![二维码](/qr_image.png "二维码")
+
+合成效果
 
 > ![头像二维码](/qr_avatar.png "头像二维码")
 
