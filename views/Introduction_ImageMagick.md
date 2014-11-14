@@ -352,6 +352,7 @@ convert test.jpg -implode 4 test_implode.jpg
 convert test.jpg -solarize 40% test_solarize.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![曝光效果](/test_solarize.jpg "曝光效果")
 
 ---------------------------------------------------------------------------
