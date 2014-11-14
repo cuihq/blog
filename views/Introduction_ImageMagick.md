@@ -201,17 +201,31 @@ convert *.png +append arrow.jpg
 
 # 比较图片
 
+要拼接的图片
+
+![包1](/bag_frame1 "包1")
+![包2](/bag_frame2.gif "包2")
+
+
 例1,静态比较：
 
 ```shell
 compare bag_frame1.gif bag_frame2.gif compare.gif
 ```
 
+比较效果
+
+> ![静态比较](/compare.jpg "静态比较")
+
 例2，动态比较:
 
 ```shell
 convert -delay 50 bag_frame1.gif bag_frame2.gif -loop 0 flicker_cmp.gif
 ```
+
+比较效果
+
+> ![动态比较](/flicker_cmp.gif "动态比较")
 
 ---------------------------------------------------------------------------------
 
