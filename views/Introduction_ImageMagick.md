@@ -288,33 +288,33 @@ convert test.jpg -shear 20 test_shear.jpg
 向右旋转是正数，向左旋转是负数
 
 ```shell
-convert test.jpg -rotate 45 test_rotate.jpg
+convert up.png -rotate 90 -flip right.png
 ```
 
-![原图](/test.jpg "原图")
-![旋转效果](/test_rotate.jpg "旋转效果")
+![向上箭头](/up.png "向上箭头")
+![向右箭头](/right.png "向右箭头")
 
 ---------------------------------------------------------------------------
 
 # 上下翻转
 
 ```shell
-convert test.jpg -flip test_flip.jpg
+convert up.png -flip down.png
 ```
 
-![原图](/test.jpg "原图")
-![上下翻转效果](/test_flip.jpg "上下翻转效果")
+![向上箭头](/up.png "向上箭头")
+![向下箭头](/down.png "向下箭头")
 
 ---------------------------------------------------------------------------
 
 # 左右翻转
 
 ```shell
-convert test.jpg -flop test_flop.jpg
+convert left.png -flop right.png
 ```
 
-![原图](/test.jpg "原图")
-![左右翻转效果](/test_flop.jpg "左右翻转效果")
+![向左箭头](/left.png "向左箭头")
+![向右箭头](/right.png "向右箭头")
 
 ---------------------------------------------------------------------------
 
