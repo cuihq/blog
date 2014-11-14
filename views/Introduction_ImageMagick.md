@@ -270,9 +270,7 @@ convert test.jpg -rotate 45 test_rotate.jpg
 
 ---------------------------------------------------------------------------
 
-# 翻转
-
-## 上下翻转
+# 上下翻转
 
 ```shell
 convert test.jpg -flip test_flip.jpg
@@ -281,7 +279,9 @@ convert test.jpg -flip test_flip.jpg
 ![原图](/test.jpg "原图")
 ![上下翻转效果](/test_flip.jpg "上下翻转效果")
 
-## 左右翻转
+---------------------------------------------------------------------------
+
+# 左右翻转
 
 ```shell
 convert test.jpg -flop test_flop.jpg
