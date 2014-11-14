@@ -36,10 +36,10 @@ Ruby程序语言支持:
 * 比较(compare): 标记两个图片的差异;
 * 显示(display): 显示一张图片或者一系列图片；
 * 合成(composite): 一张图片覆盖另外一张图片；
-* animate: animates an image or image sequence
-* conjure: execures scripts in the Magick Scripting Language
-* mogirfy: is like convert but works on the original image file
-* montage: creates an image by combining several images
+* 动画(animate): 利用X server显示动画图片;
+* conjure: 解释执行 MSL (Magick Scripting Language) 写的脚本；
+* mogirfy: 与convert差不多,改写最初的图像文件;
+* montage: 将多个文件合成一张；
 
 ----------------------------------------------------------------------
 
@@ -67,15 +67,16 @@ $ identify -list format
 
 例1:
 
+```shell
+identify test.jpg
 ```
-$ identify test.jpg
-test.jpg JPEG 293x220 293x220+0+0 8-bit sRGB 6.12KB 0.000u 0:00.000
-```
+
+> test.jpg JPEG 293x220 293x220+0+0 8-bit sRGB 6.12KB 0.000u 0:00.000
 
 例2,查看图片详情(包括元数据):
 
-```
-$ identify -verbose test.png
+```shell
+identify -verbose test.png
 ```
 
 -----------------------------------------------------------------------
@@ -87,13 +88,13 @@ $ identify -verbose test.png
 例1:
 
 ```shell
-$ convert -scale 100x250 test.jpg test_small.jpg
+convert -scale 100x250 test.jpg test_small.jpg
 ```
 
 例2：
 
 ```shell
-$ mogrify -scale 100 test.jpg
+mogrify -scale 100 test.jpg
 ```
 
 -scale开关项有一个尺寸(geometry)作为参数。 尺寸参数格式为 <W>x<h>
@@ -110,13 +111,13 @@ convert(或者 mogrify)命令可以给照片加一个相框。
 例如：
 
 ```shell
-$ convert -border 2 -bordercolor black test.png test_frame.png
+convert -border 2 -bordercolor black test.png test_frame.png
 ```
 
 更加绚丽的例子:
 
 ```shell
-$ convert -caption "my latest Polaroid" test.png \
+convert -caption "my latest Polaroid" test.png \
 -gravity center -background black +polaroid test_polaroid.png
 ```
 
@@ -128,21 +129,23 @@ import命令是一个截取屏幕的好工具。
 例1：
 
 ```shell
-$ import window.jpg
-# 现在用鼠标点击窗口
+import window.jpg
 ```
+
+现在用鼠标点击窗口
 
 例2：
 
 ```shell
-$ import -rotate 30 area.png
-# 现在用鼠标拖一个矩形
+import -rotate 30 area.png
 ```
+
+现在用鼠标拖一个矩形
 
 例3，截取全屏：
 
 ```shell
-$ sleep 5 ; import -window root all.tiff
+sleep 5 ; import -window root all.tiff
 ```
 
 ---------------------------------------------------------------------------------
@@ -154,14 +157,45 @@ $ sleep 5 ; import -window root all.tiff
 例1：
 
 ```shell
-$ display test.png
+display test.png
 ```
 
 例2：
 
 ```shell
-$ display http://cuihq.me/cli_text_image.jpg
+display http://cuihq.me/cli_text_image.jpg
 ```
+
+---------------------------------------------------------------------------------
+
+# 拼接图片
+
+要拼接的图片
+
+![向上箭头](/up.png "向上箭头")
+![向下箭头](/down.png "向下箭头")
+![向左箭头](/left.png "向左箭头")
+![向右箭头](/right.png "向右箭头")
+
+纵向拼接上下箭头图片：
+
+```shell
+convert up.png down.png -append up_down.jpg
+```
+
+合成效果
+
+> ![上下箭头](/up_down.jpg "上下箭头")
+
+横向拼接当前工作目录所有的png图片：
+
+```shell
+convert *.png +append arrow.jpg
+```
+
+合成效果
+
+> ![箭头](/arrow.jpg "箭头")
 
 ---------------------------------------------------------------------------------
 
