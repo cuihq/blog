@@ -237,6 +237,7 @@ convert -delay 50 bag_frame1.gif bag_frame2.gif -loop 0 flicker_cmp.gif
 convert test.jpg -wave 50x250 test_wave.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![水波纹效果](/test_wave.jpg "水波纹效果")
 
 ---------------------------------------------------------------------------
@@ -249,6 +250,7 @@ convert test.jpg -wave 50x250 test_wave.jpg
 convert test.jpg -shear 20 test_shear.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![倾斜效果](/test_shear.jpg "倾斜效果")
 
 ---------------------------------------------------------------------------
@@ -263,6 +265,7 @@ convert test.jpg -shear 20 test_shear.jpg
 convert test.jpg -rotate 45 test_rotate.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![旋转效果](/test_rotate.jpg "旋转效果")
 
 ---------------------------------------------------------------------------
@@ -275,6 +278,7 @@ convert test.jpg -rotate 45 test_rotate.jpg
 convert test.jpg -flip test_flip.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![上下翻转效果](/test_flip.jpg "上下翻转效果")
 
 ## 左右翻转
@@ -283,6 +287,7 @@ convert test.jpg -flip test_flip.jpg
 convert test.jpg -flop test_flop.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![左右翻转效果](/test_flop.jpg "左右翻转效果")
 
 ---------------------------------------------------------------------------
@@ -295,6 +300,7 @@ convert test.jpg -flop test_flop.jpg
 convert test.jpg -swirl 45 test_swirl.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![旋涡效果](/test_swirl.jpg "旋涡效果")
 
 ---------------------------------------------------------------------------
@@ -307,6 +313,7 @@ convert test.jpg -swirl 45 test_swirl.jpg
 convert test.jpg -charcoal 2 test_charcoal.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![铅笔画效果](/test_charcoal.jpg "铅笔画效果")
 
 ---------------------------------------------------------------------------
@@ -319,6 +326,7 @@ convert test.jpg -charcoal 2 test_charcoal.jpg
 convert test.jpg -colorize 255 test_colorize.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![着色效果](/test_colorize.jpg "着色效果")
 
 ---------------------------------------------------------------------------
@@ -331,6 +339,7 @@ convert test.jpg -colorize 255 test_colorize.jpg
 convert test.jpg -implode 4 test_implode.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![内爆效果](/test_implode.jpg "内爆效果")
 
 ---------------------------------------------------------------------------
@@ -355,6 +364,7 @@ convert test.jpg -solarize 40% test_solarize.jpg
 convert test.jpg -spread 5 test_spread.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![毛玻璃效果](/test_spread.jpg "毛玻璃效果")
 
 ---------------------------------------------------------------------------
@@ -367,6 +377,7 @@ convert test.jpg -spread 5 test_spread.jpg
 convert test.jpg -monochrome test_monochrome.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![单色效果](/test_monochrome.jpg "单色效果")
 
 ---------------------------------------------------------------------------
@@ -379,6 +390,7 @@ convert test.jpg -monochrome test_monochrome.jpg
 convert test.jpg -negate test_negate.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![反色效果](/test_negate.jpg "反色效果")
 
 ---------------------------------------------------------------------------
@@ -391,6 +403,7 @@ convert test.jpg -negate test_negate.jpg
 convert test.jpg -paint 8 test_paint.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![油画效果](/test_paint.jpg "油画效果")
 
 ---------------------------------------------------------------------------
@@ -403,6 +416,7 @@ convert test.jpg -paint 8 test_paint.jpg
 convert test.jpg -raise 5x5 test_raise.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![凸凹效果](/test_raise.jpg "凸凹效果")
 
 ---------------------------------------------------------------------------
@@ -415,6 +429,7 @@ convert test.jpg -raise 5x5 test_raise.jpg
 convert test.jpg -blur 0x3 test_blue.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![模糊效果](/test_blue.jpg "模糊效果")
 
 ---------------------------------------------------------------------------
@@ -425,6 +440,7 @@ convert test.jpg -blur 0x3 test_blue.jpg
 convert test.jpg -noise 5 test_noise.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![噪音效果](/test_noise.jpg "噪音效果")
 
 ---------------------------------------------------------------------------
@@ -437,6 +453,7 @@ convert test.jpg -noise 5 test_noise.jpg
 convert test.jpg -emboss 10 test_emboss.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![浮雕效果](/test_emboss.jpg "浮雕效果")
 
 ---------------------------------------------------------------------------
@@ -447,6 +464,7 @@ convert test.jpg -emboss 10 test_emboss.jpg
 convert test.jpg -shade 12x50 test_shade.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![阴影效果](/test_shade.jpg "阴影效果")
 
 ---------------------------------------------------------------------------
@@ -459,6 +477,7 @@ convert test.jpg -shade 12x50 test_shade.jpg
 convert test.jpg -modulate 200,100 test_modulate.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![调制效果](/test_modulate.jpg "调制效果")
 
 ---------------------------------------------------------------------------
@@ -469,6 +488,7 @@ convert test.jpg -modulate 200,100 test_modulate.jpg
 convert test.jpg -edge 1 test_edge.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![边缘锐化效果](/test_edge.jpg "边缘锐化效果")
 
 ---------------------------------------------------------------------------
@@ -479,6 +499,7 @@ convert test.jpg -edge 1 test_edge.jpg
 convert test.jpg -sharpen 3 test_sharpen.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![锐化效果](/test_sharpen.jpg "锐化效果")
 
 ---------------------------------------------------------------------------
@@ -491,6 +512,7 @@ convert test.jpg -sharpen 3 test_sharpen.jpg
 convert test.jpg -enhance test_enhance.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![图象增强](/test_enhance.jpg "图象增强")
 
 ---------------------------------------------------------------------------
@@ -503,6 +525,7 @@ convert test.jpg -enhance test_enhance.jpg
 convert test.jpg -equalize test_equalize.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![色彩均匀](/test_equalize.jpg "色彩均匀")
 
 ---------------------------------------------------------------------------
@@ -513,6 +536,7 @@ convert test.jpg -equalize test_equalize.jpg
 convert test.jpg -sketch 5 test_sketch.jpg
 ```
 
+![原图](/test.jpg "原图")
 ![素描](/test_sketch.jpg "素描")
 
 
