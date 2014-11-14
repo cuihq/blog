@@ -48,7 +48,13 @@ Ruby程序语言支持:
 例子:
 
 ```shell
-$ convert test.png test.jpg
+convert test.png test.jpg
+```
+
+批量转换当前目录下的所有的png格式为jpg
+
+```shell
+mogrify -format jpg *.png
 ```
 
 ImageMagick会从文件后缀名猜测文件格式。
@@ -88,8 +94,11 @@ identify -verbose test.png
 例1:
 
 ```shell
-convert -scale 100x250 test.jpg test_small.jpg
+convert -scale 50x50 avatar.png avatar_small.png
 ```
+
+![头像](/avatar.png "头像")
+![小头像](/avatar.png "小头像")
 
 例2：
 
@@ -183,7 +192,7 @@ display http://cuihq.me/cli_text_image.jpg
 convert up.png down.png -append up_down.jpg
 ```
 
-合成效果
+拼接效果
 
 > ![上下箭头](/up_down.jpg "上下箭头")
 
@@ -193,9 +202,24 @@ convert up.png down.png -append up_down.jpg
 convert *.png +append arrow.jpg
 ```
 
-合成效果
+拼接效果
 
 > ![箭头](/arrow.jpg "箭头")
+
+---------------------------------------------------------------------------------
+
+# 合成图片
+
+![头像](/avatar.png "头像")
+![二维码](/qr_image.png "二维码")
+
+```shell
+composite -gravity center avatar_small.png qr_image.png qr_avatar.png
+```
+
+拼接效果
+
+> ![头像二维码](/qr_avatar.png "头像二维码")
 
 ---------------------------------------------------------------------------------
 
@@ -320,7 +344,7 @@ convert test.jpg -charcoal 2 test_charcoal.jpg
 
 # 着色
 
-着色是将每个像素的颜色与指定颜色混合的过程。该效果的参数就是要用来混合的颜色。可以用一个百分数（它将分别用于红色、绿色和蓝色），也可以用三个百分数来指定这个参数。也可以提供三个实际值中的一个
+着色是将每个像素的颜色与指定颜色混合的过程。该效果的参数就是要用来混合的颜色。可以用一个百分数（它将分别用于红色、绿色和蓝色），也可以用三个百分数来指定这个参数。也可以提供三个实际值中的一个。要指定三个值，每个值分别代表红色、绿色和蓝色三个采样，使用 red/green/blue 形式的参数。例如， 10/20/30 意味着红色的值是 10、绿色值为 20 而蓝色值为 30。您也可以在这个构造中使用百分数
 
 ```shell
 convert test.jpg -colorize 255 test_colorize.jpg
