@@ -149,7 +149,7 @@ __END__
 .footer { color: #888; float: right; }
 pre {  color: #faf6e4; background-color: #122b3b; }
 * { margin: 0; padding: 0; border: 0; font: inherit; vertical-align: baseline; }
-body { font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 14px; color: #333; background-color: #fff; padding: 20px; max-width: 960px; margin: 0 auto; }
+body { font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 14px; color: #333; background-color: #AAFFAA; padding: 20px; max-width: 960px; margin: 0 auto; }
 body>*:first-child { margin-top: 0 !important; }
 body>*:last-child { margin-bottom: 0 !important; }
 p, blockquote, ul, ol, dl, table, pre { margin: 15px 0; }
