@@ -62,7 +62,7 @@ ImageMagick会从文件后缀名猜测文件格式。
 查看你系统中支持的文件格式，请输入：
 
 ```shell
-$ identify -list format
+identify -list format
 ```
 
 -----------------------------------------------------------------------
@@ -120,8 +120,11 @@ convert(或者 mogrify)命令可以给照片加一个相框。
 例如：
 
 ```shell
-convert -border 2 -bordercolor black test.png test_frame.png
+convert -border 2 -bordercolor white avatar_small.png avatar_small_with_frame.png
 ```
+
+![小头像](/avatar_small.png "小头像")
+![有边框的小头像](/avatar_small_with_frame.png "有边框的小头像")
 
 更加绚丽的例子:
 
@@ -211,12 +214,12 @@ convert *.png +append arrow.jpg
 # 合成图片
 
 ```shell
-composite -gravity center avatar_small.png qr_image.png qr_avatar.png
+composite -gravity center avatar_small_with_frame.png qr_image.png qr_avatar.png
 ```
 
 要合成的图片
 
-![头像](/avatar.png "头像")
+![头像](/avatar_small_with_frame.png "头像")
 ![二维码](/qr_image.png "二维码")
 
 合成效果
