@@ -205,6 +205,13 @@ convert up.png down.png -append up_down.jpg
 convert *.png +append arrow.jpg
 ```
 
+或者
+
+
+```shell
+montage *.png -geometry +1+1 -tile 4x1 arrow.png
+```
+
 拼接效果
 
 > ![箭头](/arrow.jpg "箭头")
@@ -256,7 +263,20 @@ convert -delay 50 bag_frame1.gif bag_frame2.gif -loop 0 flicker_cmp.gif
 
 > ![动态比较](/flicker_cmp.gif "动态比较")
 
----------------------------------------------------------------------------------
+--------------------------------------------------------------------------
+
+# 剪切图片
+
+从（100，30）坐标剪切150宽度，200高度的尺寸的图片
+
+```shell
+convert test.jpg -crop 150x200+100+30 test_crop.png
+```
+
+![原图](/test.jpg "原图")
+![剪切图](/test_wave.jpg "剪切图")
+
+--------------------------------------------------------------------------
 
 # 水波纹
 
