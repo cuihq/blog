@@ -209,7 +209,7 @@ convert up.png down.png -append up_down.jpg
 
 > ![上下箭头](/up_down.jpg "上下箭头")
 
-横向拼接当前工作目录所有的png图片：
+横向拼接当前工作目录所有的png图片(模式匹配符号*的解析依赖于特定的终端)：
 
 ```shell
 convert *.png +append arrow.jpg
@@ -439,6 +439,21 @@ convert test.jpg -monochrome test_monochrome.jpg
 
 ![原图](/test.jpg "原图")
 ![单色效果](/test_monochrome.jpg "单色效果")
+
+---------------------------------------------------------------------------
+
+# 棕褐色
+
+照片暗室的棕褐色调色效果。
+棕褐色调色阈值的范围从0到100%。
+80%的阈值，是一个合理的起始点。
+
+```shell
+convert test.jpg -sepia-tone 80% test_sepia_tone.jpg
+```
+
+![原图](/test.jpg "原图")
+![棕褐色效果](/test_sepia_tone.jpg "棕褐色效果")
 
 ---------------------------------------------------------------------------
 
