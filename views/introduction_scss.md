@@ -1,6 +1,7 @@
 # scss 简介
 
-**scss**是**CSS**的扩展语言。  
+**scss**是**CSS**的扩展语言。
+通过输入scss语言，编译成css语言。  
 它兼容csss语法，并允许你使用变量，函数等语法以及嵌套,继承等特性。  
 了解更多，请参见[scss官网](http://sass-lang.com/ "scss官网")。
 
@@ -31,7 +32,6 @@ scss --watch app/sass:public/stylesheets
 
 更多命令，请在命令行中输入`scss --help`
 
-
 ruby中调用
 
 ```ruby
@@ -39,13 +39,98 @@ engine = Sass::Engine.new("#main {color: #fff}", syntax: :scss)
 engine.render
 ```
 
+## 输出方式
+通过程序中`:style`选项或者命令行中的`--style`来控制,
+编译的**CSS**有四种方式输出：
+
+* 嵌套`:nested`
+* 展开`:expanded`
+* 紧凑`:compact`
+* 压缩`:compressed`
+
+### 嵌套输出
+这是默认的输出方式，输出的CSS如下：
+
+```css
+#main {
+  color: #fff;
+  background-color: #000; }
+  #main p {
+    width: 10em; }
+
+.huge {
+  font-size: 10em;
+  font-weight: bold;
+  text-decoration: underline; }
+```
+
+### 展开输出
+
+这比较适合人阅读：
+```css
+#main {
+  color: #fff;
+  background-color: #000;
+}
+#main p {
+  width: 10em;
+}
+
+.huge {
+  font-size: 10em;
+  font-weight: bold;
+  text-decoration: underline;
+}
+```
+
+### 紧凑输出
+
+这种输出方式节省空间：
+
+```css
+#main { color: #fff; background-color: #000; }
+#main p { width: 10em; }
+
+.huge { font-size: 10em; font-weight: bold; text-decoration: underline; }
+```
+
+### 压缩输出
+
+这种输出方式试用与生产环境：
+
+```css
+#main{color:#fff;background-color:#000}#main p{width:10em}.huge{font-size:10em;font-weight:bold;text-decoration:underline}
+```
+
 ## 语法
 
 * 注释
+* 数据类型
 * 变量
 * 操作符
 * 控制指令(判断和循环)
 * 函数
+
+### 注释
+* 多行注释使用`/*`和`*/`包围
+* 单行注释使用`//`开始  
+例如：
+```scss
+// 这是一行注释
+/* 这是多行注释
+注释第二行
+*/
+```
+
+### 数据类型
+
+* 数字 (如 1.2, 13, 10px)
+* 文本字符串, 可以不用引号 (如 "foo", 'bar', baz)
+* 颜色 (如 blue, #04a3f9, rgba(255, 0, 0, 0.5))
+* 布尔值 (如 true, false)
+* 控制 (如 null)
+* 树组, 以空格或者`,`逗号分隔 (如. 1.5em 1em 0 2em, Helvetica, Arial, sans-serif)
+* 健值对 (如 (key1: value1, key2: value2))
 
 ### 变量
 符号`$`为变量符号。
@@ -72,7 +157,8 @@ body {
 ```
 
 ### 操作符
-**scss**支持`+`，`-`，`*`，`/`和`%`操作符。
+**scss**支持`+`，`-`，`*`，`/`和`%`运算操作符，
+和`==`，` !=`，`>`，`<`，`>=`，`<=`布尔操作符。
 
 ```scss
 .container { width: 100%; }
