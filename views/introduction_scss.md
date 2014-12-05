@@ -7,20 +7,24 @@
 ## 安装和使用
 
 安装命令：
+
 ```bash
 gem install sass
 ```
 
 将**scss**转换成**CSS**的命令：
+
 ```bash
 scss input.scss output.css
 ```
 
 你也可以告诉**scss**文件，每次更新**CSS**时**scss**更改:
+
 ```bash
 scss --watch input.scss:output.csss
 ```
 或者文件夹:
+
 ```bash
 scss --watch app/sass:public/stylesheets
 ```
@@ -29,11 +33,14 @@ scss --watch app/sass:public/stylesheets
 
 
 ruby中调用
+
 ```ruby
 engine = Sass::Engine.new("#main {color: #fff}", syntax: :scss)
 engine.render
 ```
+
 ## 语法
+
 * 注释
 * 变量
 * 操作符
@@ -45,6 +52,7 @@ engine.render
 可以将颜色，字体等提取成变量。
 不同的主题采用不同的变量值，以方便重用。
 **scss**：
+
 ```scss
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
@@ -53,7 +61,9 @@ body {
   color: $primary-color;
 }
 ```
+
 编译并展开的**css**结果：
+
 ```css
 body {
   font: 100% Helvetica, sans-serif;
@@ -63,6 +73,7 @@ body {
 
 ### 操作符
 **scss**支持`+`，`-`，`*`，`/`和`%`操作符。
+
 ```scss
 .container { width: 100%; }
 
@@ -76,7 +87,9 @@ aside[role="complimentary"] {
   width: 300px / 960px * 100%;
 }
 ```
+
 编译并展开后的**css**结果为：
+
 ```css
 .container {
   width: 100%;
@@ -92,10 +105,12 @@ aside[role="complimentary"] {
   width: 31.25%;
 }
 ```
+
 ### 控制指令
 
 #### 判断分支
 `@if`指令用于判断分支
+
 ```scss
 $type: monster;
 p {
@@ -108,15 +123,19 @@ p {
   }
 }
 ```
+
 编译并展开的css结果：
-````css
+
+```css
 p {
   color: red;
 }
 ```
+
 #### 循环分支
 `@for`或`@while`指令用于出来循环
-````scss
+
+```scss
 @for $i from 1 through 3 {
   .item-#{$i} { width: 2em * $i; }
 }
@@ -126,8 +145,10 @@ $i: 6;
   $i: $i - 2;
 }
 ```
+
 编译并展开的css结果：
-````css
+
+```css
 .item-1 {
   width: 2em;
 }
@@ -138,7 +159,9 @@ $i: 6;
   width: 6em;
 }
 ```
+
 `@each`指令用于枚举树组或集合
+
 ```
 @each $animal in puma, sea-slug, egret {
   .#{$animal}-icon {
@@ -151,7 +174,9 @@ $i: 6;
   }
 }
 ```
+
 编译并展开的css结果：
+
 ```
 .puma-icon {
   background-image: url('/images/puma.png');
@@ -172,7 +197,9 @@ h3 {
   font-size: 1.2em;
 }
 ```
+
 多个值的使用：
+
 ```scss
 @each $animal, $color, $cursor in (puma, black, default),
 (sea-slug, blue, pointer),
@@ -184,7 +211,9 @@ h3 {
   }
 }
 ```
+
 编译并展开的css结果：
+
 ```css
 .puma-icon {
   background-image: url('/images/puma.png');
@@ -205,6 +234,7 @@ h3 {
 
 ### 函数
 `@function`指令用户创建函数，一个函数必须使用`@return`指定返回值
+
 ```scss
 $grid-width: 40px;
 $gutter-width: 10px;
@@ -215,11 +245,16 @@ $gutter-width: 10px;
 
 #sidebar { width: grid-width(5); }
 ```
+
 其中,scss中内置了很多有用的函数,如:
+
 ```scss
-max($val1, $val2， 5) // 取得几个数中的最大值
-rgba($color, $alpha) // 取得一个指定透明度颜色的函数
+// 取得几个数中的最大值
+max($val1, $val2， 5)
+// 取得一个指定透明度颜色的函数
+rgba($color, $alpha)
 ```
+
 更多内置函数请访问[SCSS API](http://sass-lang.com/documentation/Sass/Script/Functions.html)
 ## 规则
 * 嵌套规则
@@ -232,6 +267,7 @@ html的节点是一个树形结构。
 scss也是一个树形节点,这比css在结构上更直观。
 嵌套规则中的`&`代表父节点。  
 **scss**：
+
 ```scss
 #main {
   color: black;
@@ -245,7 +281,9 @@ scss也是一个树形节点,这比css在结构上更直观。
   }
 }
 ```
+
 编译并展开的**css**结果：
+
 ```css
 #main {
   color: black;
@@ -265,7 +303,9 @@ body.firefox #main a {
   border: 1px solid;
 }
 ```
+
 也可以嵌套属性, 例如：
+
 ```scss
 .funky {
   font: 20px/24px fantasy {
@@ -273,8 +313,10 @@ body.firefox #main a {
   }
 }
 ```
+
 编译并展开的css结果：
-```
+
+```css
 .funky {
   font: 20px/24px fantasy;
   font-weight: bold;
@@ -286,6 +328,7 @@ body.firefox #main a {
 这样更容易按照模块或功能来进行组织与划分。  
 **注意**： 导入的**scss**文件以`_`下划线开始。
 例如：有一个*_reset.scss*文件
+
 ```scss
 // _reset.scss
 html,
@@ -296,7 +339,9 @@ ol {
   padding: 0;
 }
 ```
+
 被*base.scss*文件导入
+
 ```scss
 /* base.scss */
 
@@ -307,7 +352,9 @@ body {
   background-color: #efefef;
 }
 ```
+
 编译并展开的css的结果为：
+
 ```css
 html, body, ul, ol {
   margin: 0;
@@ -319,21 +366,27 @@ body {
   background-color: #efefef;
 }
 ```
+
 `@import`不仅可以引用scss文件，还可以引入css文件。
+
 ```scss
 @import "foo.css";
 @import "foo" screen;
 @import "http://foo.com/bar";
 @import url(foo);
 ```
+
 将编译成的css为:
+
 ```css
 @import "foo.css";
 @import "foo" screen;
 @import "http://foo.com/bar";
 @import url(foo);
 ```
+
 更多用法如下：
+
 ```scss
 // 导入多个scss文件
 @import "rounded-corners", "text-shadow";
@@ -350,6 +403,7 @@ $family: unquote("Droid+Sans");
 
 ### 混入规则
 `@mixin`指令创建一个引入块，`@include`进行混入
+
 ```scss
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -360,6 +414,7 @@ $family: unquote("Droid+Sans");
 
 .box { @include border-radius(10px); }
 ```
+
 编译并展开后的**css**结果为：
 
 ```css
@@ -373,6 +428,7 @@ $family: unquote("Droid+Sans");
 
 ### 继承/扩展规则
 使用`@extend`指令继承。
+
 ```scss
 .message {
   border: 1px solid #ccc;
@@ -395,7 +451,9 @@ $family: unquote("Droid+Sans");
   border-color: yellow;
 }
 ```
+
 编译并展开后的**css**结果为：
+
 ```css
 .message, .success, .error, .warning {
   border: 1px solid #cccccc;
