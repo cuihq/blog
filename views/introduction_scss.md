@@ -67,6 +67,7 @@ engine.render
 ### 展开输出
 
 这比较适合人阅读：
+
 ```css
 #main {
   color: #fff;
@@ -112,9 +113,12 @@ engine.render
 * 函数
 
 ### 注释
+
 * 多行注释使用`/*`和`*/`包围
 * 单行注释使用`//`开始  
+
 例如：
+
 ```scss
 // 这是一行注释
 /* 这是多行注释
@@ -153,6 +157,33 @@ body {
 body {
   font: 100% Helvetica, sans-serif;
   color: #333;
+}
+```
+
+可以使用`!default`来定义一个默认值,
+`null`和没有赋值时,会使用默认值：
+
+```scss
+$content: "First content";
+$content: "Second content?" !default;
+$content1: "First time reference" !default;
+$content2: null;
+$content2: "Non-null content" !default;
+
+#main {
+  content: $content;
+  content1: $new_content;
+  content2: $content2;
+}
+```
+
+编译并展开的**css**结果：
+
+```css
+#main {
+  content: "First content";
+  content1: "First time reference";
+  content2: "Non-null content";
 }
 ```
 
@@ -346,7 +377,7 @@ rgba($color, $alpha)
 * 嵌套规则
 * 导入规则
 * 混入规则
-* 继承/扩展规则
+* 继承规则
 
 ### 嵌套规则
 html的节点是一个树形结构。
@@ -407,6 +438,28 @@ body.firefox #main a {
   font: 20px/24px fantasy;
   font-weight: bold;
 }
+```
+
+可以使用`@at-root`指令忽略嵌套，如：
+
+```scss
+.parent {
+  ...
+  @at-root {
+    .child1 { ... }
+    .child2 { ... }
+  }
+  .step-child { ... }
+}
+```
+
+编译并展开的**css**结果：
+
+```css
+.parent { ... }
+.child1 { ... }
+.child2 { ... }
+.parent .step-child { ... }
 ```
 
 ### 导入规则
@@ -512,7 +565,31 @@ $family: unquote("Droid+Sans");
 }
 ```
 
-### 继承/扩展规则
+混入时可以通过`@content`传入内容块:
+
+```scss
+$color: white;
+@mixin colors($color: blue) {
+  background-color: $color;
+  @content;
+  border-color: $color;
+}
+.colors {
+  @include colors { color: $color; }
+}
+```
+
+编译并展开后的**css**结果为：
+
+```css
+.colors {
+  background-color: blue;
+  color: white;
+  border-color: blue;
+}
+```
+
+### 继承规则
 使用`@extend`指令继承。
 
 ```scss
@@ -558,4 +635,27 @@ $family: unquote("Droid+Sans");
 .warning {
   border-color: yellow;
 }
+```
+
+在继承中可以使用`%`来代替`#`或者`.`选择器，如：
+
+```scss
+// 渲染的结果不会包含extreme自己
+#context a%extreme {
+  color: blue;
+  font-weight: bold;
+  font-size: 2em;
+}
+.notice {
+  @extend %extreme;
+}
+```
+
+编译并展开后的**css**结果为：
+
+```css
+#context a.notice {
+  color: blue;
+  font-weight: bold;
+  font-size: 2em; }
 ```
